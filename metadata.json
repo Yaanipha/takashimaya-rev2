@@ -1,0 +1,6 @@
+{
+  "name": "Ginza Ngee Ann Elegance",
+  "description": "Premier Japanese department store hospitality and prestige membership experience at Ngee Ann City Orchard Road.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
