@@ -111,23 +111,23 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="pt-4 border-t border-[#EEDCD4] space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold text-[#201A1A]">Select Quantity</span>
-              <div className="flex items-center border border-[#E0CEC5] rounded-lg overflow-hidden h-9">
+              <div className="flex items-center border border-[#E0CEC5] rounded-xl overflow-hidden h-11">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-9 h-full flex items-center justify-center hover:bg-[#F8EBEA] text-[#201A1A] cursor-pointer"
+                  className="w-11 h-full flex items-center justify-center hover:bg-[#F8EBEA] text-[#201A1A] cursor-pointer active:scale-95 transition-transform"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-4 h-4" />
                 </button>
-                <span className="w-10 text-center text-xs font-mono font-bold text-[#201A1A]">
+                <span className="w-12 text-center text-sm font-mono font-bold text-[#201A1A]">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-9 h-full flex items-center justify-center hover:bg-[#F8EBEA] text-[#201A1A] cursor-pointer"
+                  className="w-11 h-full flex items-center justify-center hover:bg-[#F8EBEA] text-[#201A1A] cursor-pointer active:scale-95 transition-transform"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-4 h-4" />
                 </button>
               </div>
             </div>

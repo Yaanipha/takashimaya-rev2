@@ -1,4 +1,5 @@
 export type MembershipTier = 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
+export type AppPage = 'home' | 'tiers' | 'depachika' | 'concierge' | 'vault';
 
 export interface TierInfo {
   id: MembershipTier;

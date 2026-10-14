@@ -4,7 +4,7 @@ import { ROSE_CHAN_TIPS } from '../data/mockData';
 
 export const RoseChanWidget: React.FC = () => {
   const [tipIndex, setTipIndex] = useState(0);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const tips = [
     {
@@ -34,7 +34,7 @@ export const RoseChanWidget: React.FC = () => {
   ];
 
   return (
-    <aside aria-label="Rose-chan Concierge" className="fixed bottom-6 right-6 z-30 max-w-sm hidden sm:block">
+    <aside aria-label="Rose-chan Concierge" className="fixed bottom-20 right-4 z-30 max-w-xs sm:max-w-sm">
       {isOpen ? (
         <div className="relative">
           {/* Dialogue Card Speech Bubble (rounded-xl curves, soft peach porcelain fill #F7EDE8, hairline border #EEDCD4) */}

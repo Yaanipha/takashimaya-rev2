@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Eye, Sparkles, Check, ArrowRight } from 'lucide-react';
+import { ShoppingBag, Eye, Sparkles, Check, ArrowRight, Search, X } from 'lucide-react';
 import { ProductItem, MemberProfile } from '../types';
 import { CURATED_PRODUCTS } from '../data/mockData';
 
@@ -15,6 +15,7 @@ export const DepachikaShowcase: React.FC<DepachikaShowcaseProps> = ({
   onSelectProduct,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [addedId, setAddedId] = useState<string | null>(null);
 
   const categories = [
@@ -25,10 +26,16 @@ export const DepachikaShowcase: React.FC<DepachikaShowcaseProps> = ({
     { id: 'collector', label: 'Rose-chan Collector' },
   ];
 
-  const filteredProducts =
-    activeCategory === 'all'
-      ? CURATED_PRODUCTS
-      : CURATED_PRODUCTS.filter((p) => p.category === activeCategory);
+  const filteredProducts = CURATED_PRODUCTS.filter((p) => {
+    const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+    const matchesSearch =
+      searchQuery.trim() === '' ||
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.japaneseName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.origin.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const handleAdd = (product: ProductItem, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -58,6 +65,28 @@ export const DepachikaShowcase: React.FC<DepachikaShowcaseProps> = ({
           <div className="px-4 py-2.5 rounded-xl bg-[#F8EBEA] border border-[#EEDCD4] text-xs font-medium text-[#201A1A] self-start md:self-end shrink-0">
             <span className="font-bold text-[#7A1520]">Prestige Privilege:</span>{' '}
             <span>10% Gold discount applies at bag checkout.</span>
+          </div>
+        </div>
+
+        {/* Search Bar */}
+        <div className="mb-6">
+          <div className="relative max-w-md">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A7170]" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search sweets, matcha, melons, watches..."
+              className="w-full h-11 pl-10 pr-9 bg-white border border-[#E0CEC5] rounded-xl text-xs sm:text-sm text-[#201A1A] placeholder:text-[#8A7170] focus:outline-none focus:border-[#7A1520] shadow-xs"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8A7170] hover:text-[#201A1A] p-0.5 rounded-full"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         </div>
 

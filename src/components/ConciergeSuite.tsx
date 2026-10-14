@@ -5,10 +5,17 @@ import { PRESTIGE_TIERS } from '../data/mockData';
 
 interface ConciergeSuiteProps {
   member: MemberProfile;
+  initialTab?: 'lounge' | 'valet' | 'shopper' | 'tsutsumi';
 }
 
-export const ConciergeSuite: React.FC<ConciergeSuiteProps> = ({ member }) => {
-  const [activeTab, setActiveTab] = useState<'lounge' | 'valet' | 'shopper' | 'tsutsumi'>('lounge');
+export const ConciergeSuite: React.FC<ConciergeSuiteProps> = ({ member, initialTab = 'lounge' }) => {
+  const [activeTab, setActiveTab] = useState<'lounge' | 'valet' | 'shopper' | 'tsutsumi'>(initialTab);
+
+  React.useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   // Lounge State
   const [loungeDate, setLoungeDate] = useState('Tomorrow, 3:30 PM');
